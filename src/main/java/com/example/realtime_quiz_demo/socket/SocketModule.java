@@ -28,12 +28,6 @@ public class SocketModule {
         this.leaderBoardService = leaderBoardService;
         server.addConnectListener(onConnected());
         server.addDisconnectListener(onDisconnected());
-
-//        server.addEventListener("update_point", LeaderBoard.class, (client, data, ackSender) -> {
-//            System.out.println("update point event");
-//            leaderBoardService.registerPoint(data);
-//            server.getRoomOperations(data.getQuizId()).sendEvent("update_leader_board", data);
-//        });
     }
 
     private ConnectListener onConnected() {
