@@ -13,7 +13,6 @@ import com.example.realtime_quiz_demo.service.LeaderBoardService;
 import com.example.realtime_quiz_demo.service.SocketService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 @Component
@@ -30,14 +29,11 @@ public class SocketModule {
         server.addConnectListener(onConnected());
         server.addDisconnectListener(onDisconnected());
 
-        server.addEventListener("update_point", LeaderBoard.class, (client, data, ackSender) -> {
-            System.out.println("update point event");
-            leaderBoardService.registerPoint(data)
-                    .doOnSuccess(lb -> {
-                        server.getRoomOperations(data.getQuizId()).sendEvent("update_leader_board", data);
-                    })
-                    .subscribe();
-        });
+//        server.addEventListener("update_point", LeaderBoard.class, (client, data, ackSender) -> {
+//            System.out.println("update point event");
+//            leaderBoardService.registerPoint(data);
+//            server.getRoomOperations(data.getQuizId()).sendEvent("update_leader_board", data);
+//        });
     }
 
     private ConnectListener onConnected() {

@@ -1,11 +1,11 @@
 package com.example.realtime_quiz_demo.repository;
 
 import com.example.realtime_quiz_demo.model.LeaderBoard;
-import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface LeaderBoardRepository extends ReactiveMongoRepository<LeaderBoard, String> {
-    Mono<LeaderBoard> findByQuizIdAndUserId(String quizId, String userId);
-    Flux<LeaderBoard> findByQuizIdOrderByPointDesc(String quizId);
+import java.util.List;
+
+public interface LeaderBoardRepository extends MongoRepository<LeaderBoard, String> {
+    LeaderBoard findByQuizIdAndUserId(String quizId, String userId);
+    List<LeaderBoard> findByQuizIdOrderByPointDesc(String quizId);
 }

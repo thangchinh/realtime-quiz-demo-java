@@ -6,8 +6,6 @@ import com.example.realtime_quiz_demo.repository.QuizRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class QuizService {
     @Autowired
     private QuizRepository quizRepository;
 
-    public Mono<Quiz> addDummyQuiz() {
+    public Quiz addDummyQuiz() {
         Quiz dummyQuiz = new Quiz("111",
                 List.of(
                         new Question("quest1", "ans1", "ans2", "ans3", "ans4", 1),
@@ -26,11 +24,10 @@ public class QuizService {
                         new Question("quest3", "ans1", "ans2", "ans3", "ans4", 3)
                 )
             );
-        return quizRepository.save(dummyQuiz)
-                .log();
+        return quizRepository.save(dummyQuiz);
     }
 
-    public Flux<Quiz> getAllQuizs(){
-        return  quizRepository.findAll();
+    public List<Quiz> getAllQuizs(){
+        return quizRepository.findAll();
     }
 }

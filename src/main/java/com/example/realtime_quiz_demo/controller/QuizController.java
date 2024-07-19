@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/quiz")
@@ -20,12 +20,12 @@ public class QuizController {
 
     @PostMapping("/dummy-quiz")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Quiz> addMovieInfo() {
+    public Quiz addMovieInfo() {
         return quizService.addDummyQuiz();
     }
 
     @GetMapping("/quizs")
-    public Flux<Quiz> getAllQuizs() {
+    public List<Quiz> getAllQuizs() {
         return quizService.getAllQuizs();
     }
 }
