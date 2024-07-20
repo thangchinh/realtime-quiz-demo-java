@@ -1,0 +1,20 @@
+spring:
+  application:
+    name=realtime-quiz-demo:
+  data:
+    mongodb:
+      host: realtime-quiz-mongo
+      port: 27017
+      database: realtime-quiz-demo
+      username: root
+      password: root
+      authentication-database: admin
+      auto-index-creation: true
+
+socket-server:
+  port: 8085
+  host: 0.0.0.0
+
+logging:
+  level:
+    root: info

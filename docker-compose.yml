@@ -1,15 +1,30 @@
 version: "3"
 services:
-  test-mongo:
-    container_name: test-mongo
+  app:
+    container_name: realtime-quiz-app
+    image: realtime-quiz-demo:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "8085:8085"
+    networks:
+      - realtime-quiz-network
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - realtime-quiz-mongo
+  realtime-quiz-mongo:
+    container_name: realtime-quiz-mongo
     image: mongo:latest
     #restart: always
     ports:
       - 27017:27017
     networks:
-      - test-network
+      - realtime-quiz-network
     volumes:
-      - test_mongodb_data:/data/db
+      - realtime_quiz_mongodb_data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
@@ -18,26 +33,26 @@ services:
       DB_USER: root
       DB_PASSWORD: root
 
-  test-mongo-express:
-    container_name: test-mongo-express
+  realtime-quiz-mongo-express:
+    container_name: realtime-quiz-mongo-express
     image: mongo-express:latest
     #restart: always
     depends_on:
-      - test-mongo
+      - realtime-quiz-mongo
     networks:
-      - test-network
+      - realtime-quiz-network
     ports:
       - 8081:8081
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: root
-      ME_CONFIG_MONGODB_URL: mongodb://root:root@test-mongo:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://root:root@realtime-quiz-mongo:27017/
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin
 
 networks:
-  test-network:
+  realtime-quiz-network:
     driver: bridge
 volumes:
-  test_mongodb_data:
+  realtime_quiz_mongodb_data:
 
