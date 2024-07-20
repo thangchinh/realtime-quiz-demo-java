@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -16,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 @AllArgsConstructor
 @Document
 @Validated
+@Builder
 @CompoundIndex(name = "unique_index", def = "{'quizId': 1, 'point': -1}", unique = true)
 public class LeaderBoard {
     @Id

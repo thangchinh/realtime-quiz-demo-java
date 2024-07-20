@@ -22,6 +22,7 @@ public class ScoreController {
     @PostMapping("/submit-answers")
     @ResponseStatus(HttpStatus.CREATED)
     public void submitAnswers(@RequestBody AnswersRequest answersRequest) {
+        log.info("submitAnswers={}", answersRequest);
         scoreService.updateScore(answersRequest);
     }
 }

@@ -20,6 +20,7 @@ public class LeaderBoardController {
 
     @GetMapping("/get-leader-board")
     public List<LeaderBoardResponse> getLeaderBoard(@RequestParam(value = "quizId") String quizId) {
+        log.info("get-leader-board quizId={}", quizId);
         return boardService.getLeaderBoard(quizId);
     }
 }

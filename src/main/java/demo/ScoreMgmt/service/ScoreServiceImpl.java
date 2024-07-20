@@ -1,5 +1,6 @@
 package demo.ScoreMgmt.service;
 
+import demo.BoardMgmt.model.LeaderBoard;
 import demo.BoardMgmt.service.BoardService;
 import demo.QuizMgmt.dto.AnswersRequest;
 import demo.ScoreMgmt.infra.event.ScoreEvent;
@@ -27,10 +28,10 @@ public class ScoreServiceImpl implements ApplicationEventPublisherAware, ScoreSe
     public void updateScore(AnswersRequest answersRequest) {
         int updatedScore = ScoreUtil.calScore(answersRequest);
         var board = boardService.findBoardByQuizIdAndUserId(answersRequest.getQuizId(), answersRequest.getUserId());
-        if (board != null) {
-            board.setPoint(updatedScore);
-            boardService.updateBoard(board);
-        }
+        var updatedBoard = board == null ? LeaderBoard.builder().userId(answersRequest.getUserId()).quizId(answersRequest.getQuizId()).point(updatedScore).build() : board;
+        updatedBoard.setPoint(updatedScore);
+        boardService.updateBoard(updatedBoard);
+        // In demo, we do not cover the possible inconsistency between DB data and event publish if one of them failed
         publishScoreEvent(updatedScore, answersRequest.getUserId(), answersRequest.getQuizId());
     }
 
