@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 public interface QuizRepository extends MongoRepository<Quiz, String> {
-  List<Quiz> findByQuizId(String quizId);
+  Quiz findByQuizId(String quizId);
 }

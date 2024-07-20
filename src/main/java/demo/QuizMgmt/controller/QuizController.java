@@ -19,7 +19,7 @@ public class QuizController {
     private final QuizService quizService;
 
     @GetMapping("/quizs")
-    public List<QuizResponse> getQuizByRoom(@RequestParam String roomId) {
+    public QuizResponse getQuizByRoom(@RequestParam String roomId) {
         log.info("getQuizByRoom={}", roomId);
         return quizService.getQuizByRoomId(roomId);
     }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface QuizService {
   Quiz addInitialData();
-  List<QuizResponse> getQuizByRoomId(String roomId);
+  QuizResponse getQuizByRoomId(String roomId);
 }

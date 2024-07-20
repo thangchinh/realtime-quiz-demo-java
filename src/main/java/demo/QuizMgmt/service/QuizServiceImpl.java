@@ -29,7 +29,7 @@ public class QuizServiceImpl implements QuizService {
   }
 
   @Override
-  public List<QuizResponse> getQuizByRoomId(String roomId) {
+  public QuizResponse getQuizByRoomId(String roomId) {
     return QuizResponse.fromQuiz(quizRepository.findByQuizId(roomId));
   }
 }

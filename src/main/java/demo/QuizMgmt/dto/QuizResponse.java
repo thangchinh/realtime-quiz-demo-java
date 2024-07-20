@@ -15,23 +15,19 @@ public class QuizResponse {
 
   private List<QuestionResponse> questions;
 
-  public static List<QuizResponse> fromQuiz(List<Quiz> quizs) {
-    var result = new ArrayList<QuizResponse>();
-    if (quizs != null) {
-      for (Quiz quiz : quizs) {
-        List<Question> questions = quiz.getQuestions();
-        List<QuestionResponse> questionResponses = new ArrayList<>();
-        for (Question question : questions) {
-          QuestionResponse questionResponse = new QuestionResponse();
-          questionResponse.setAnsA(question.getAnsA());
-          questionResponse.setAnsB(question.getAnsB());
-          questionResponse.setAnsC(question.getAnsC());
-          questionResponses.add(questionResponse);
-        }
-        result.add(new QuizResponse(questionResponses));
-      }
+  public static QuizResponse fromQuiz(Quiz quiz) {
+    if (quiz == null) {
+      return null;
     }
-    return result;
+    List<Question> questions = quiz.getQuestions();
+    List<QuestionResponse> questionResponses = new ArrayList<>();
+    for (Question question : questions) {
+      QuestionResponse questionResponse = new QuestionResponse();
+      questionResponse.setAnsA(question.getAnsA());
+      questionResponse.setAnsB(question.getAnsB());
+      questionResponse.setAnsC(question.getAnsC());
+      questionResponses.add(questionResponse);
+    }
+    return new QuizResponse(questionResponses);
   }
-
 }
