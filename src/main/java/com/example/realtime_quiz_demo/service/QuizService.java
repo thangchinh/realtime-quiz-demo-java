@@ -19,9 +19,9 @@ public class QuizService {
     public Quiz addDummyQuiz() {
         Quiz dummyQuiz = new Quiz("111",
                 List.of(
-                        new Question("quest1", "ans1", "ans2", "ans3", "ans4", 1),
-                        new Question("quest2", "ans1", "ans2", "ans3", "ans4", 2),
-                        new Question("quest3", "ans1", "ans2", "ans3", "ans4", 3)
+                        new Question("quest1", "ans1", "ans2", "ans3", "ans4", 1, 10),
+                        new Question("quest2", "ans1", "ans2", "ans3", "ans4", 2, 20),
+                        new Question("quest3", "ans1", "ans2", "ans3", "ans4", 3, 30)
                 )
             );
         return quizRepository.save(dummyQuiz);

@@ -33,4 +33,8 @@ public class Question {
     @NotNull
     @Positive(message = "correctAns must be a Positive Value")
     private Integer correctAns;
+
+    @NotNull
+    @Positive(message = "questionPoint must be a Positive Value")
+    private Integer questionPoint;
 }
