@@ -19,7 +19,7 @@ public class LeaderBoardController {
 
     @PostMapping("/register-point")
     @ResponseStatus(HttpStatus.CREATED)
-    public LeaderBoard registerPoint(@RequestBody LeaderBoard leaderBoard) {
+    public LeaderBoard submitAnswers(@RequestBody LeaderBoard leaderBoard) {
         return leaderBoardService.registerPoint(leaderBoard);
     }
 
