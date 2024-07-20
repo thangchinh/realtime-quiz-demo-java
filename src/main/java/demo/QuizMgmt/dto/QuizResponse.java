@@ -23,9 +23,11 @@ public class QuizResponse {
     List<QuestionResponse> questionResponses = new ArrayList<>();
     for (Question question : questions) {
       QuestionResponse questionResponse = new QuestionResponse();
+      questionResponse.setQuestion(question.getQuestion());
       questionResponse.setAnsA(question.getAnsA());
       questionResponse.setAnsB(question.getAnsB());
       questionResponse.setAnsC(question.getAnsC());
+      questionResponse.setAnsD(question.getAnsD());
       questionResponses.add(questionResponse);
     }
     return new QuizResponse(questionResponses);

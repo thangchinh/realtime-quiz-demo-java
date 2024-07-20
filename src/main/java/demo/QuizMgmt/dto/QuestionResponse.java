@@ -16,6 +16,8 @@ public class QuestionResponse {
 
   private String ansC;
 
+  private String ansD;
+
   private Integer correctAns;
 
 }
