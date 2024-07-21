@@ -18,7 +18,7 @@ import org.springframework.validation.annotation.Validated;
 @Document
 @Validated
 @Builder
-@CompoundIndex(name = "unique_index", def = "{'quizId': 1, 'point': -1}", unique = true)
+@CompoundIndex(name = "unique_quiz_user", def = "{'quizId': 1, 'userId': 1}", unique = true)
 public class LeaderBoard {
     @Id
     private String id;
